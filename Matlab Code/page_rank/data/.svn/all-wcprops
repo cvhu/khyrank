@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data
+END
+compareRanks.m
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/compareRanks.m
+END
+matlab.mat
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/matlab.mat
+END
+pr10000.mat
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/pr10000.mat
+END
+pr20000.mat
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/pr20000.mat
+END
+compareSubgraphs.mat
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/compareSubgraphs.mat
+END
+compareLayers.mat
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/compareLayers.mat
+END
+dc10000.mat
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/dc10000.mat
+END
+pr15000.mat
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/pr15000.mat
+END
+dc20000.mat
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/dc20000.mat
+END
+compareSubgraphs.eps
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/compareSubgraphs.eps
+END
+dc15000.mat
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/dc15000.mat
+END
+compareLayers.eps
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/compareLayers.eps
+END
+Results_10K.mat
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/Results_10K.mat
+END
+Results_20K.mat
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/Results_20K.mat
+END
+Results_15K.mat
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/Results_15K.mat
+END
+pr10000sorted.txt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/pr10000sorted.txt
+END
+pr20000sorted.txt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/pr20000sorted.txt
+END
+dc10000_sorted.txt
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/dc10000_sorted.txt
+END
+dc20000_sorted.txt
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/dc20000_sorted.txt
+END
+pr15000sorted.txt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/pr15000sorted.txt
+END
+plotRanks.m
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/plotRanks.m
+END
+dc15000_sorted.txt
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/dc15000_sorted.txt
+END
+compareRanks.eps
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/cs391d/!svn/ver/94/trunk/Matlab%20Code/page_rank/data/compareRanks.eps
+END

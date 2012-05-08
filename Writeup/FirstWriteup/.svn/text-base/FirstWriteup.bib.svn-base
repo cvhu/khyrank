@@ -1,0 +1,118 @@
+@article{Goldenberg,
+	author="J. Goldenberg and B. Libai and E. Muller",
+	title="Using Complex Systems Analysis to Advance Marketing Theory Development",
+	journal="Academy of Marketing Science Review",
+	year = "2011"
+	}
+
+@article{Granovetter,
+	author="M. Granovetter",
+	title="THreshold models of collective behavior",
+	journal="American Journal of Sociology",
+	pages="85(6):1420-1443",
+	year="1978"
+}
+
+@article{Domingos,
+	author="P. Domingos and M. Richardson",
+	title="Mining the Network Value of Customers",
+	journal="Seventh International Conference on Knowledge Discovery and Data Mining",
+	year = "2001"
+}
+
+@article{Halko,
+	author="N. Halko and P. G. Martinsson and J. A. Tropp",
+	title="Finding structure with randomness: Stochastic algorithms for constructing approximate matrix decompositions",
+	journal="Tech. re",
+	page="2009-05",
+	year="2009"
+}
+
+@article{Estrada2,
+	author = "E. Estrada and J. A. Rodr\'{i}guez-Vel\'{a}zquez",
+	title = "Subgraph centrality in complex networks",
+	journal= " Phys. Rev. E",
+	volume="71(2005)",
+	number="056103",
+	year="2005"
+}
+
+@article{Estrada3,
+	author = "E. Estrada and N. Hatano",
+	title = "Communicability in complex networks",
+	journal="Phys. Rev. E",
+	volume="77(2007)",
+	number="036111",
+	year = "2007"
+}
+
+@article{Estrada4,
+	author = "E. Estrada and D. J. Higham and N. Hatano",
+	title="Communicability betweenness in complex networks",
+	journal="Phys. A",
+	volume = "388(2009)",
+	pages = "764-774",
+	year = "2009"
+}	
+
+@misc{maciej,
+	author="Maciej Ceglowski",
+	title="The Social Graph is Neither",
+	url={http://blog.pinboard.in/2011/11/the_social_graph_is_neither},
+	month = nov,
+	year = {2011}
+	}
+
+@misc{forbes,
+	author="Venkatesh Rao",
+	month = oct,
+	year = {2011},
+	title="The Social Graph as Crude Oil (Go Ahead, Build that YASN!)",
+	url={http://www.forbes.com/sites/venkateshrao/2011/10/21/the-social-graph-as-crude-oil-go-ahead-build-that-yasn/}
+	}
+
+@article{ Galeotti,
+       author = "Andrea Galeotti and Sanjeev Goyal and Matthew O. Jackson and Fernando Vega-Redondo and Leeat Yariv",
+       title = "Network games",
+       journal = "Review of Economic Studies",
+       year = "2010", 
+       pages = {77},
+       }
+
+@article{Estrada,
+	author =  "Ernesto Estrada and Desmond J. Higham",
+	title = "Network properties revealed through matrix functions",
+	journal = "SIAM Rev",
+	pages = "52:696–714", 
+	year = "2010",
+	}
+	
+@article{Kempe,	
+	author = "David Kempe and Jon Kleinberg and Eva Tardos",
+	title = "Maximizing the spread of inﬂuence through a social network",
+	journal = "ACM SIGKDD international conference on Knowledge discovery and data mining",
+	pages = "137–146", 
+	year = "2003",
+	}
+
+@article{Mathioudakis,
+	author = "Michael Mathioudakis and Francesco Bonchi and Carlos Castillo and Aristides Gionis and Antti Ukkonen",
+	title = "Sparsiﬁcation of inﬂuence networks",
+	journal = "ACM SIGKDD international conference on Knowledge discovery and data mining",
+	year = "2011",
+	}
+	
+@article{Dhillon,		
+	author = "Berkant Savas and Inderjit S Dhillon",
+	title = "Clustered low rank approximation of graphs in information science applications",
+	journal = "SIAM International Conference on Data Mining",
+	year = "201",
+	}
+	
+@article{Wang,
+	author = "Yu Wang and Gao Cong and Guojie Song and Kunqing Xie",
+	title = "Community-based greedy algorithm for mining top-k inﬂuential nodes in mobile social networks",
+	journal = "16th ACM SIGKDD international conference on Knowledge discovery and data mining", 
+	pages = "1039–1048",
+	year = "2010",
+	}

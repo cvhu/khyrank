@@ -1,0 +1,131 @@
+\documentclass[twocolumn]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\usepackage{url}
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+% TODO: fix the title
+\title{Using Repeated Data to Predict Influential Users}
+\author{
+	\scalebox{.87}{
+		\begin{tabular}{ccc}
+		\Large{Ann Kilzer}\footnote{Department of Computer Science, University of Texas at Austin, USA (akilzer@gmail.com)}
+		& \Large{Aron Yu}\footnote{Department of Electrical \& Computer Engineering, University of Texas at Austin, USA (aron.yu@utexas.edu)}
+		& \Large{C. Vic Hu}\footnote{Department of Electrical \& Computer Engineering, University of Texas at Austin, USA (cvhu@utexas.edu)}\\
+		\end{tabular}
+	}
+}
+\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+We've all heard about viral marketing.  Even Forbes.com compared the social graph to ``crude oil," describing it as an ``unrefined and complex natural resource containing many riches" \cite{forbes}.   Maciej Ceglowski, the developer behind Pinboard.in quipped ``Social networks exist to sell you crap. The icky feeling you get when your friend starts to talk to you about Amway, or when you spot someone passing out business cards at a birthday party, is the entire driving force behind a site like Facebook" \cite{maciej}.
+
+Advertisers want to run the most effective campaign using a limited budget. The whole idea behind viral marketing is to target users who will spread the word to their friends.
+But how do we choose which users to target?  Our project is to find a scalable method for finding the most influential users in a social graph.  We hypothesize that we can measure an individual's influence by the number of \emph{repeaters} they connect to.  By repeaters, we mean those users who redistribute content (Think Twitter's ``retweets," Google+ and Facebook's ``Share" features).
+
+%TODO: neaten up
+
+\section{Setup}
+
+We will be running our tests on a Twitter dataset.  Twitter is an online social network that specializes in ``microblogging,'' sharing text snippets, or ``tweets,''  of no more than 140 characters.  It is a directed graph: you may follow others, subscribing to their tweets, but they may not necessarily follow you.  Features of the service include the ability to ``retweet,'' or repeat, verbatim, another's post.  Additionally, users label their tweets via hashtags, short strings beginning with \#, which provide some context to the tweet.  For instance, a current popular hashtag is ``\#OcuppyOakland,'' which quickly provides context to tweets about the current political protests.  Another feature is to directly reference users by putting an @ before their screen name.
+
+Twitter distinguishes itself from other popular social networks in that it is easy to repeat content, either via retweets or repeating a hashtag.  Posts are by default public, and twitter is a popular platform for celebrities, brands, and organizations to connect with their followers.
+
+
+\section{Project Status}
+
+\subsection{Accomplishments}
+
+Over the past weeks, we have accomplished the following:
+
+\begin{itemize}
+\item acquired a dataset of tweets from the past year.
+\item wrote and tested python code to gather data on the twitter graph.
+\item wrote code to export python data to MATLAB
+\item learned to use condor cluster to speed up our code
+\item investigated related work
+\end{itemize}
+%TODO: anything to add?
+
+
+\subsection{Obstacles}
+
+Our twitter dataset is extremely large.  For instance, 20 days worth of data from October was about 20G.  We need to cut the problem down to an appropriate size so we can compute it in time.  Additionally, we are having difficulty opening the large data files for processing.  We are now using pypy and condor to speed things up. 
+
+\subsection{Goals}
+
+Our plan is to crawl a subset of the twitter graph corresponding to the users in our tweet data.  We will build a directed adjacency matrix solely based on the ``follower" definition in twitter and export it into MATLAB. The \emph{influence score} for each user will be calculated by our algorithm in MATLAB.
+
+% TODO: describe our proposed algorithm -- feel free to change it
+We split our data into two time periods.  The first is used for training, the second is used for testing. We are assuming here that the users' behaviors remain relatively constant over the training and testing time periods.
+
+During the training period, our algorithm first counts the number of tweets originating from each user and assigns an inidividual \emph{resource score}. Then it counts the number of times each user retweets information or repeats a hashtag, and assigns an individual \emph{repeat score}. Using these two scores and the adjacency matrix, we can compute the \emph{influence score}. It is reasonable to assume that the most influential users will be the nodes with the highest resource score and the highest average repeat score among the followers. The resource score and the repeat score need to be weighed appropriately.
+
+% NOTE: There needs to be some kind of normalization/weighing mechanism to the repeat scores. We also need to take into account the number of followers when comparing the average repeat scores among the followers. A user with 10 followers where 5 of them have high repeat scores shouldn't be more valuable than a user with 100 followers where 30 of them have high repeat scores.
+
+% TODO: (How should we then compute the influence score?)
+The simplest way of counting the influence score would be to count the number of followers with a repeat score over threshold $N$.  More elaborate methods might sum the repeater score of all followers.
+
+% NOTE: Maybe we can track how each piece of information is being passed around the nodes. Then we can test our training influence scores by seeing whether a new piece of information did go as 'far' as we expected it to go.
+
+% TODO:
+We plan to evaluate our algorithm by comparing it to other methods for computing influential users, such as degree count.
+
+\section{Related Work}
+
+%[1] Ernesto Estrada and Desmond J. Higham. Network properties revealed through matrix functions. SIAM Rev., 52:696–714, November 2010.
+% TODO Vic
+%\cite{Estrada}
+To find the influential users in a social network, we need to understand and quantify some underlying properties such as centrality, communicability, and betweenness measures on a general matrix, and the framework that Estrada et al. put together meets this purpose perfectly \cite{Estrada}. By using the matrix exponentials of a network's adjacency, they introduced the \emph{subgraph centrality} of node i $ \left( I+A+\frac{A^2}{2!}+\cdots+\frac{A^k}{k!}+\cdots \right)_{ii} = (exp(A))_{ii}$\cite{Estrada2} and \emph{communicability} between node i and j $(exp(A))_{ij}$ \cite{Estrada3}. Furthermore, to quantify the influence of a node,\emph{betweenness} was introduced to describe the change of communicability when the node is removed, which is defined as \[ \frac{1}{(N-1)^2-(N-1)}\sum_{i=1}^N \sum_{j=1}^N \frac{exp(A)_{ij}-exp(A-E(r))_{ij}}{exp(A)_{ij}}\]
+where $i\neq j,i\neq r, j\neq r$, A-E(r) is the adjacency matrix when all edges connected to node r are removed\cite{Estrada4}.
+
+
+%[2] David Kempe, Jon Kleinberg, and Eva Tardos. Maximizing the spread of inﬂuence through ´a social network. In Proceedings of the ninth ACM SIGKDD international conference on Knowledge discovery and data mining, KDD ’03, pages 137–146, New York, NY, USA, 2003. ACM.
+% Vic
+
+As pointed out in a research paper by Kempe et al. at Cornell University \cite{Kempe}, selecting the most influential users in a social network is a NP-hard optimization problem, and even a provable approximation for efficient algorithms can be challenging to solve. Inspired by two diffusion models of interacting particles, \emph{Linear Threshold}\cite{Granovetter} and \emph{Independent Cascade Models}\cite{Goldenberg}, where each node can be turned on as \emph{active} from \emph{inactive} based on its neighbor weights and activating threshold, the team used a natural greedy hill-climbing approach related to \cite{Domingos} to show that the performance is guaranteed to be at least 63\% (1-1/e) of optimal, which significantly out-performs other algorithms targeting high-degree or ``central'' nodes. The group further generalized the proved strategies to more realistic marketing scenario, where marketing actions are no longer simplified as making a single node active, but rather have stochastic effects to increase a subset of nodes' probability of becoming active (and each individual has different response to each actions.) To maximize the expected size of the final active set, they applied the hill-climbing algorithm on the expected revenue with respect to a vector of investment actions.
+
+%[3] Michael Mathioudakis, Francesco Bonchi, Carlos Castillo, Aristides Gionis, and Antti Ukkonen. Sparsiﬁcation of inﬂuence networks. In Proceedings of the 17th ACM SIGKDD international conference on Knowledge discovery and data mining, KDD ’11. ACM, 2011.
+%TODO Aron
+%\cite{Mathioudakis}
+When given a social graph and a list of actions propagating through it, Mathioudakis et al. designed the SPINE algorithm to find the 'backbone' of the network through the use of the independent-cascade model \cite{Mathioudakis}. The algorithm proved to be an effective pre-processing step for solving influence-maximization problems. The effectiveness of SPINE came from its ability to reduce computation speed significantly while giving up little accuracy. Its main applications included propagation characterization, feed ranking, and viral marketing.
+
+
+
+%[4] Berkant Savas and Inderjit S Dhillon. Clustered low rank approximation of graphs in information science applications. In Proceedings of the 2011 SIAM International Conference on Data Mining, 2011
+%TODO Vic
+%\cite{Dhillon}
+To approximate a massive graph of networks data, Savas and Dhillon\cite{Dhillon} provided a faster and better performance framework using clustered low rank matrices. While preserving essential information structure of a massive graph, their algorithm partitions nodes into clusters, computes low rank approximations independently, and combines each low rank approximations to obtain the approximation of the entire graph. The approximation errors were derived to have deterministic bounds using a stochastic algorithm introduced by Halko et al.\cite{Halko} The clustering approach was experimented and shown to outperform traditional approximation methods in both speed efficiency and memory usage significantly.
+
+
+%[5] Yu Wang, Gao Cong, Guojie Song, and Kunqing Xie. Community-based greedy algorithm for mining top-k inﬂuential nodes in mobile social networks. In Proceedings of the 16th ACM SIGKDD international conference on Knowledge discovery and data mining, KDD ’10, pages 1039–1048, New York, NY, USA, 2010. ACM
+% TODO Aron
+Wang et al. took a community-based approach to finding the influential nodes by observing information diffusion \cite{Wang}. Their research targeted the mobile social network as it modeled the spread of information on a large scale. Communities within a given network were identified through a modified version of the current community detection algorithms. The changes included the addition of information diffusion as a main factor, the handling of weighted directed graphs, and the ability to modify the threshold of community decision boundaries. Instead of mining every single communities in the network, they allowed the mining decision to be dynamically chosen by the algorithm. The selection of algorithm for finding top-K influential user is trivial. This new algorithm provided provable performance guarantee just like previous algorithms. When tested on a network with 15 times more user nodes than previous testing, the new algorithm proved to be orders of magnitude faster than the leading greedy algorithm, while maintaining a small error margin.
+
+
+%[6] Andrea Galeotti, Sanjeev Goyal, Matthew O. Jackson, Fernando Vega-Redondo, and Leeat Yariv. Network games. Review of Economic Studies, 77, 2010.
+% TODO Ann
+The dynamics of friendship and information sharing in a social network fit into Galeotti et al.’s model of Network Games \cite{Galeotti}.  Here, players are connected in a graph.  Players can either act or not act. In a game of \emph{strategic substitutes}, a neighbor's action replaces the need for the player to act.  In the \emph{strategic complements} game, a neighbor's action gives the player greater incentive to act, while a neighbor's inaction gives the player less incentive to act.  Viral marking in a social network displays features of both strategic complements and substitutes.  For instance, if Alice shares content, her friend Bob may feel less need to duplicate content, since typically some of their friends (including Charlier) overlap.  Perhaps Charlie only needs to hear the campaign once to be influenced.  However, we might also imagine that Charlie would be more interested in the campaign if many of his friends were sharing information about it.
+
+
+\section{Acknowledgements}
+Thanks to Joseph Reisinger for providing us data from twitter crawls.
+
+
+%\section{Conclusion}
+%TODO
+
+
+\bibliography{FirstWriteup}{}
+\bibliographystyle{plain}
+
+\end{document}  
